@@ -5,6 +5,29 @@ Store and sync data with our NoSQL cloud database. Data is synced across all cli
 
 The Firebase Realtime Database is a cloud-hosted database. Data is stored as JSON and synchronized in realtime to every connected client. When you build cross-platform apps with our iOS, Android, and JavaScript SDKs, all of your clients share one Realtime Database instance and automatically receive updates with the newest data.
 
+Before understanding the next steps, we will talk about the Firebase Database Rules.
+
+The Real-time database provides a declarative rules language. It defines how our data should be structured, how it should be indexed, and when our data can be read from and written to. By default, read and write access to our database is restricted, so only authenticated users can read or write data.
+
+To get started without setting up Authentication, we can configure our rules for public access. These rules make our database open to anyone, even people not using our app, read and write access to our database.
+
+{  
+  "rules": {  
+    ".read": true,  
+    ".write": true  
+  }  
+}  
+
+
+If we want to allow authenticated users for accessing read and write to our database, then we will use the following rules:
+
+{  
+  "rules": {  
+    ".read": "auth!=null",  
+    ".write": "auth!=null"  
+  }  
+}   
+
 ## Read Database like as below
 
         firebaseDatabase = FirebaseDatabase.getInstance();
